@@ -16,6 +16,7 @@ import {
   Button
 } from 'react-native';
 
+import PlaceInputContainer from './src/components/PlaceInputContainer/PlaceInputContainer';
 import ListItem from './src/components/ListItem/ListItem';
 
 const instructions = Platform.select({
@@ -54,7 +55,7 @@ export default class App extends Component<Props> {
     ));
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
+        {/* <View style={styles.inputContainer}>
           <TextInput
             style={styles.placeInput}
             value={this.state.placeName}
@@ -66,7 +67,14 @@ export default class App extends Component<Props> {
             style={styles.buttonInput}
             onPress={this.placeSubmitHandler}
           />
-        </View>
+        </View> */}
+        <PlaceInputContainer
+          placeholder="an awesome place"
+          value={this.state.placeName}
+          onChangeText={this.placeNameChangedHandler}
+          buttonTitle="Add"
+          onPress={this.placeSubmitHandler}
+        />
         <View style={styles.listContainer}>{placesOutput}</View>
       </View>
     );
