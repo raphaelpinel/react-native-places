@@ -67,7 +67,7 @@ export default class App extends Component<Props> {
             onPress={this.placeSubmitHandler}
           />
         </View>
-        <View style={styles.placeList}>{placesOutput}</View>
+        <View style={styles.listContainer}>{placesOutput}</View>
       </View>
     );
   }
@@ -92,5 +92,8 @@ const styles = StyleSheet.create({
   },
   buttonInput: {
     width: '30%'
+  },
+  listContainer: {
+    width: '100%'
   }
 });
