@@ -17,17 +17,9 @@ import {
 } from 'react-native';
 
 import PlaceInputContainer from './src/components/PlaceInputContainer/PlaceInputContainer';
-import ListItem from './src/components/ListItem/ListItem';
+import PlaceList from './src/components/PlaceList/PlaceList';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu'
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   state = {
     placeName: '',
     places: []
@@ -50,24 +42,8 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const placesOutput = this.state.places.map((place, i) => (
-      <ListItem key={`${place}-${i}`} placeName={place} />
-    ));
     return (
       <View style={styles.container}>
-        {/* <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.placeInput}
-            value={this.state.placeName}
-            onChangeText={this.placeNameChangedHandler}
-            placeholder="an awesome place"
-          />
-          <Button
-            title="Add"
-            style={styles.buttonInput}
-            onPress={this.placeSubmitHandler}
-          />
-        </View> */}
         <PlaceInputContainer
           placeholder="an awesome place"
           value={this.state.placeName}
@@ -75,7 +51,7 @@ export default class App extends Component<Props> {
           buttonTitle="Add"
           onPress={this.placeSubmitHandler}
         />
-        <View style={styles.listContainer}>{placesOutput}</View>
+        <PlaceList places={this.state.places} />
       </View>
     );
   }
@@ -100,8 +76,5 @@ const styles = StyleSheet.create({
   },
   buttonInput: {
     width: '30%'
-  },
-  listContainer: {
-    width: '100%'
   }
 });
