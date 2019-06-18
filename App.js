@@ -31,6 +31,7 @@ export default class App extends Component {
 
   placeSubmitHandler = () => {
     if (this.state.placeName.trim() === '') {
+      z;
       return;
     }
     this.setState(prevState => {
@@ -40,7 +41,11 @@ export default class App extends Component {
       };
     });
   };
-
+  deleteItemHandler = i => {
+    let places = [...this.state.places];
+    places = [...places.slice(0, i), ...places.slice(i + 1)];
+    this.setState({ places });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -51,7 +56,10 @@ export default class App extends Component {
           buttonTitle="Add"
           onPress={this.placeSubmitHandler}
         />
-        <PlaceList places={this.state.places} />
+        <PlaceList
+          places={this.state.places}
+          onItemDeleted={this.deleteItemHandler}
+        />
       </View>
     );
   }
